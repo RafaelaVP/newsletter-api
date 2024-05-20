@@ -47,7 +47,7 @@ export class SendNewslettersUseCase {
     }
     
     await transporter.sendMail({
-      from: 'rafavalpint@gmail.com',
+      from: 'example.mail@gmail.com',
       to: client.email,
       subject: 'Notícias do dia!',
       html: message.replace(/\n/g, '<br>'), 
