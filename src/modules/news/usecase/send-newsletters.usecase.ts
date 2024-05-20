@@ -17,43 +17,43 @@ export class SendNewslettersUseCase {
   }
 
   async execute() {
-    // Buscar notícias não processadas
     const news = await this.newsService.findUnprocessed();
 
-    // Buscar todos os clientes
     const clients = await this.clientsService.findAll();
 
-    // Configurar transporte de e-mail
-    const transporter = nodemailer.createTransport({
-      // Configurações do transporte de e-mail
-    });
+   const transporter = nodemailer.createTransport({
+    host: 'localhost',
+    port: 1025,
+    secure: false, 
+    auth: null
+} as nodemailer.TransportOptions);
 
     for (const client of clients) {
-      let message = `Bom dia ${client.name},\n\nSegue as notícias de hoje.\n\n`;
+      let message = `Bom dia, ${client.name},\n\nSegue as notícias de hoje.\n\n`;
 
-      // Adicionar mensagem de aniversário, se aplicável
       if (client.birthDate && client.birthDate.getDate() === new Date().getDate() &&
           client.birthDate.getMonth() === new Date().getMonth()) {
         message += 'Feliz aniversário!\n\n';
       }
 
-      // Adicionar notícias ao e-mail
-      for (const item of news) {
-        message += `${item.title}\n${item.description}\nLeia mais em: ${item.link}\n\n`;
-      }
+    const unprocessedNews = news.filter(item => !item.processed);
 
-      message += 'Até a próxima.';
+    if (unprocessedNews.length === 0) {
+      console.log('Email já enviado com todas as notícias');
+    }
 
-      // Enviar e-mail
-      await transporter.sendMail({
-        from: 'seu-email@example.com',
-        to: client.email,
-        subject: 'Notícias do dia!',
-        text: message,
-      });
+    for (const item of unprocessedNews) {
+      message += `<a href="${item.link}">${item.title}</a>\n${item.description}\n\n`;
+    }
+    
+    await transporter.sendMail({
+      from: 'rafavalpint@gmail.com',
+      to: client.email,
+      subject: 'Notícias do dia!',
+      html: message.replace(/\n/g, '<br>'), 
+    });
 
-      // Marcar notícias como processadas
-      for (const item of news) {
+      for (const item of unprocessedNews) {
         await this.newsService.markAsProcessed(item.id);
       }
     }
