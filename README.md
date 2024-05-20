@@ -20,11 +20,11 @@
 <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
 </p>
 
-# Desafio de Backend - Newsletter
+# Backend Challenge - Newsletter
 
-Este projeto é um sistema backend para cadastro e envio de e-mail de newsletter. Ele permite o cadastro de clientes e notícias via API Web. Todos os dias às 08h, o sistema consulta os registros e dispara e-mails com as notícias cadastradas e não processadas ainda para os e-mails cadastrados. Se uma data de nascimento foi cadastrada para um cliente, o sistema envia junto um “feliz aniversário" se a data corrente for a mesma do nascimento.
+This project is a backend system for registration and sending of newsletter emails. It allows the registration of clients and news via Web API. Every day at 08:00, the system checks the records and sends emails with the registered news that have not yet been processed to the registered emails. If a birth date was registered for a client, the system sends a "happy birthday" if the current date is the same as the birth date.
 
-## Tecnologias Utilizadas
+## Technologies Used
 
 - Node.js
 - TypeScript
@@ -33,37 +33,36 @@ Este projeto é um sistema backend para cadastro e envio de e-mail de newsletter
 - Docker
 - Swagger
 
-## Como Rodar o Projeto
+## How to Run the Project
 
-1. Clone o repositório para a sua máquina.
+1. Clone the repository to your machine.
 
-2. Instale as dependências do projeto com o comando `npm install`.
+2. Install the project dependencies with the command `npm install`.
 
-3. Inicie os serviços de banco de dados e MailHog com o Docker Compose usando o comando `docker-compose up`.
+3. Start the database and MailHog services with Docker Compose using the command `docker-compose up`.
 
-4. Execute as migrações do Prisma com o comando `npx prisma migrate dev`.
+4. Run the Prisma migrations with the command `npx prisma migrate dev`.
 
-5. Inicie o servidor com o comando `npm start`.
+5. Start the server with the command `npm start`.
 
-## Documentação da API
+## API Documentation
 
-A documentação da API está disponível através do Swagger. Você pode acessá-la em `http://localhost:3000/api-docs`.
+The API documentation is available through Swagger. You can access it at `http://localhost:3000/api-docs`.
 
-## Testando o Sistema
+## Testing the System
 
-Para testar o sistema, você pode usar qualquer cliente HTTP para fazer requisições para a API. Os endpoints disponíveis são:
+To test the system, you can use any HTTP client to make requests to the API. The available endpoints are:
 
-- `POST /clients`: Para cadastrar um novo cliente.
-- `POST /news`: Para cadastrar uma nova notícia.
+- `POST /clients`: To register a new client.
+- `POST /news`: To register a new news.
 
-Para testar o envio de e-mails, você pode usar a interface web do MailHog, que está disponível em `http://localhost:8025`.
+To test the sending of emails, you can use the MailHog web interface, which is available at `http://localhost:8025`.
 
-## Observações
+## Notes
 
-Este projeto utiliza o MailHog para simular o envio de e-mails. O MailHog é uma ferramenta de teste de e-mail que captura e exibe e-mails enviados pela aplicação. Isso permite que possamos ver exatamente o que está sendo enviado sem realmente enviar e-mails para endereços reais.
+This project uses MailHog to simulate the sending of emails. MailHog is an email testing tool that captures and displays emails sent by the application. This allows us to see exactly what is being sent without actually sending emails to real addresses.
 
-O banco de dados utilizado é o PostgreSQL, e o gerenciamento das tabelas e registros é feito através do Prisma, um ORM para TypeScript e JavaScript.
-
+The database used is PostgreSQL, and the management of tables and records is done through Prisma, an ORM for TypeScript and JavaScript.
 
 ## Contributing
 
