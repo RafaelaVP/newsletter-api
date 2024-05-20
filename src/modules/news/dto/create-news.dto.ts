@@ -18,12 +18,4 @@ export class CreateNewsDto {
   @IsBoolean()
   @ApiProperty({ default: false })
   processed: boolean = false;
-
-  @IsNotEmpty()
-  @ApiProperty()
-  createdAt: Date;
-
-  @IsNotEmpty()
-  @ApiProperty()
-  updatedAt: Date;
 }
