@@ -12,7 +12,6 @@ export class CreateClientDto {
   email: string;
 
   @IsOptional()
-  @IsDateString()
-  @ApiProperty({ required: false })
-  birthDate: Date;
+  @ApiProperty({ required: false,  example: 'DD/MM/YYYY' })
+  birthDate: string;
 }
